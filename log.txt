@@ -1,0 +1,135 @@
+# v0.0.8 created on Jan. 26, 2012
+#  (1) made changes according to Rui's and Brian's comments
+#--------------------------------------------------------------------------------
+#
+#1)      Name of the functions: how about csi.est and augcsi.est ?
+#
+#2)      Order of the functions, please put csi.est first then augcsi.est
+#
+#3)      Description: The package contains functions for estimating incidence
+#rate from assay-based cross-sectional studies
+#
+#4)      In the Description for Cal.incidenceB (page 1), please change
+#"cross-section" to "cross-sectional".
+#
+#5)      Page 2, in the Arguments, for N1, please put "(e.g., ELISA)" after
+#"sensitive test", and similarly for n1, put  "(e.g., BED)" after
+#"less-sensitive
+#test"  for the first time they appear.
+#
+#6)      Page 2, in the Arguments, for n0, add "indefinitely" at the end of
+#sentence, right before ";".
+#
+#7)      Page 2, in the Arguments, please replace "patients" with "subjects"
+#throughout.
+#
+#8)      Page 2, in the Arguments, please remove "at baseline" throughout.
+#
+#9)      Page 2, in the Arguments, for ftime, in the parentheses, please change
+#to "(time from cross-sectional sample to first positive result on
+#less-sensitive
+#test or end of follow-up, whichever occurs first)".
+#
+#10)   Page 2, in the details, I am not sure if I understand what is currently
+#written, don't we know the length of follow-up? Do we assume that if they have
+#not become positive at the end of study follow-up, then they are long-term
+#non-progressors?
+#
+#11)    Page 2, in "value", please change "at baseline" to "at the time of
+#cross-sectional sample".
+#
+#12)   Page 2, in "value", at the end of description for "incidence.CI", please
+#change the last sentence to "This interval is symmetric about
+#log(\hat{\lambda}), and not about\hat{\mabda}".
+#
+#13)   Please use rwang@hsph.harvard.edu <mailto:rwang@hsph.harvard.edu>  as my
+#email address.
+#
+#14)   Page 3, in the "examples", the comments for "interval=2", please add
+#units, such as "interval between follow-up visits, in weeks".
+#
+#15)   Page 3, in the "examples", can you add a few more comments, to separate
+#the part about generating such datasets and then apply the cal.incidence
+#function? Also, the comments for the two cases with p=1 and p<1, let's not
+#label
+#them as "Estimator A" and "Estimator B", but instead just say "p=1; in the
+#absence of long-term non-progressors", and "p<1; in the presence of long-term
+#non-progressors".
+#
+#16)   Page 3, in the description for csi, please change it to "Estimating
+#incidence rate from assay-based cross-sectional studies, allowing for a
+#subpopulation that remains negative on the less-sensitive assay indefinitely."
+#
+#17)   Page 4, In the Arguments, can we change the arguments (n1 to N1, n2 to
+#N2,
+#n3 to N3) to be consistent with augcsi.est?
+#
+#18)   Page 4, please add "e.g., BED" after the less-sensitive test the first
+#time we mention it.
+#
+#19)   Page 4, in the Arguments, please change "reactive" or "non-reactive" to
+#"testing positive" and "testing negative" to be consistent.
+#
+#20)   Page 4, in the Arguments, for "p", please change the last sentence to
+#"p=1
+#corresponds to the setting where all infected subjects will test positive on
+#the
+#less-sensitive test".
+#
+#21)   Page 4, in the Arguments for "sd.mu" and "sd.p", should we say "standard
+#error" rather than "standard deviation"? also, please change the sentence to
+#the
+#following: "standard error of an externally-estimated \hat{mu}." Similarly for
+#"sd.p". To this end, I also wonder whether we can change the sd.mu and sd.p to
+#se.mu and se.p to be consistent with se.est.
+#
+#22)   For ci.95, can we just use incidence.ci to be consistent with
+#augcsi.est?
+#also let user specify the coverage level ?
+#
+#-------------------------------------------------------------
+#Let¢s do the easy one first  for the names of these 2 functions, perhaps we
+#could call them csi.r and csiaug.r? this way csi.r would come first?
+# 
+#Now I understand what you mean with the upper bound. So in the p<1 case, we
+#assume that those who have not become positive at the end of follow-up are
+#long-term non-progressors; but for the p=1 case, if they have not become
+#positive at the end of follow-up, they are censored. It just occur to me that
+#for p=1 case, this can also happen if someone is lost to follow up; but in p<1
+#case, it is unclear how to handle lost to follow up.
+# 
+#Because of this, what do you and Weiliang think if we change the Argument for
+#¡, the part in parentheses, to the following:
+# 
+#´time from cross-sectional sample to first positive result on less-sensitive
+#test¡
+# 
+#And leave the ´Details¡ on page 2 as the way it is to avoid confusion.
+#-------------------------------------------
+#
+# v0.0.7 created on Dec. 12, 2011
+#  (1) update the manual file for the function 'csi'
+#
+# v0.0.6 created on Nov. 30, 2011
+#  (1) add function 'csi'
+#
+# v0.0.5 created on Nov. 21, 2011
+#  (1) change the package name to 'Ace' which stands for
+#    'Assay-based Cross-sectional Estimation of incidence rates'
+#
+# v0.0.4 created on Nov. 14, 2011
+#  (1) change the Title to 'Augmented Cross-sectional Estimation of incidence
+#  rate'
+#
+# v0.0.3 created on Nov. 14, 2011
+#  (1) add 'set.seed(1234)' for the examples in the file Cal.incidenceB.Rd
+#  (2) add 'na.rm=TRUE' to functions 'sum' and 'mean' in the file 
+#      'IncidenceEstimationFunction.R' to handle missing values
+#  (3) add space around operators e.g. '+', '-', '=', ',', '*', '/' to make the R code
+#      easier to read
+#  (4) add indent to paragraphs to make the R coe easier to read
+#  (5) move the definitions of functions 'Gupt', 'mu', 'f', 'fkg', 'F' outside Cal.incidenceB
+#  (6) rename the definitions of functions 'f', 'fkg', 'F' in
+#      the function  'L3w' to 'f2', 'fkg2', and 'F2'
+#  (7) rename function 'mu' to 'muFunc' to distinguish function 'mu' and variable 'mu'
+#  (8) add inputs 'ai', 'bi', and 'n1' to the function 'L3w' 

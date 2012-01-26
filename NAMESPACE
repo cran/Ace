@@ -1,0 +1,9 @@
+
+# functions
+export(
+  csi.est,
+  csiaug.est
+)
+
+import(stats)
+

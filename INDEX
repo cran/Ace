@@ -1,0 +1,5 @@
+csi.est		estimating incidence rate based on the four state model 
+		allowing for a subpopulation that indefinitely 
+		remains nonreactive
+csiaug.est	estimating incidence rate based on augmented cross-section 
+		studies
